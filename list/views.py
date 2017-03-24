@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import list
 
@@ -8,4 +8,8 @@ def name_list(request):
 
 def name_list(request):
     return render(request, 'list/name_list.html',{})
+
+def list_detail(request, pk):
+    list = get_object_or_404(list, pk=pk)
+    return render(request, 'list/list_detail.html', {'list': list})
 # Create your views here.

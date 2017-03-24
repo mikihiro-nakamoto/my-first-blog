@@ -1,32 +1,12 @@
 {% extends 'list/base.html' %}
 
-<html>
-    <head>
-        <title>Name List of Labo</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/list.css' %}">
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Name list of Labo</a></h1>
+{% block content %}
+    {% for list in lists %}
+        <div class="list">
+            <div class="date">
+                {{ list.published_date }}
+            </div>
+            <h1><a href="{% url 'list_detail' pk=list.pk %}">{{ list.name }}</a></h1>
         </div>
-
-        <div class="content container">
-         <div class="row">
-           <div class="col-md-8">
-            {% block content %}
-              {% for list in lists %}
-                  <div class="list">
-                      <div class="date">
-                          <p>published: {{ list.published_date }}</p>
-                      </div>
-                      <h1><a href="">{{ list.name }}</a></h1>
-                  </div>
-              {% endfor %}
-            {% endblock %}
-          </div>
-      </div>
-  </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
